@@ -43,9 +43,12 @@ class VerificationsService
     public function deleteVerificationsCache(): void
     {
         Craft::$app->getCache()->delete($this->getVerificationsCacheKey());
-        
-        foreach (Craft::$app->getCache()->get($this->getVerificationsTagsCacheKey()) as $tag) {
-            Craft::$app->getCache()->delete($tag);
-        }
+        $cacheTags = Craft::$app->getCache()->get($this->getVerificationsTagsCacheKey();
+
+        if($cacheTags) {
+            foreach ($cacheTags) as $tag) {
+                Craft::$app->getCache()->delete($tag);
+            }
+        }   
     }
 }
