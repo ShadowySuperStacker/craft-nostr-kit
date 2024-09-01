@@ -1,0 +1,37 @@
+{
+    "name": "shadowy-super-stacker/nostr-kit",
+    "description": "NIP 05 Verification",
+    "type": "craft-plugin",
+    "license": "mit",
+    "version": "1.0.0",
+    "require": {
+        "php": ">=8.2",
+        "craftcms/cms": "^5.0.0",
+        "swentel/nostr-php": "^1.4"
+    },
+    "require-dev": {
+        "craftcms/phpstan": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "shadowysuperstacker\\nostrkit\\": "src/"
+        }
+    },
+    "extra": {
+        "handle": "nostr-kit",
+        "name": "Nostr Kit",
+        "developer": "Shadowy Super Stacker",
+        "documentationUrl": "",
+        "class": "shadowysuperstacker\\nostrkit\\NostrKit"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.2"
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
+    }
+}

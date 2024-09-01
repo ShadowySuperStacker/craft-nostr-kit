@@ -1,0 +1,54 @@
+{% extends '_layouts/cp.twig' %}
+{% import '_includes/forms.twig' as forms %}
+
+{% set title = 'Nostr verifications NIP-05'|t('my-plugin') %}
+
+{% block content %}
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Npub</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for verification in verifications %}
+            <tr>
+                <td>{{ verification.name }}</td>
+                <td>{{ verification.npub }}</td>
+                <td><a href="{{ cpUrl('nostr-kit/verifications/delete/' ~ verification.id) }}" class="btn btngroup-btn-first"><div class="label inline-flex">Delete</div></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <h2>Add new verification</h2>
+    <form method="post">
+        {#     Have the form submit to a my-plugin/events/save controller action #}
+        {{ actionInput('nostr-kit/manage-verifications/create') }}
+        {{ csrfInput() }}
+
+        {#     Have the save action redirect to /my-plugin/events afterward #}
+        {{ redirectInput('nostr-kit/verifications') }}
+
+        {{ forms.textField({
+            label: 'Name'|t('plugin-handle'),
+            id: 'name',
+            name: 'name',
+            required: true,
+            errors: verification.getErrors('name'),
+        }) }}
+        {{ forms.textField({
+            label: 'Npub'|t('plugin-handle'),
+            id: 'npub',
+            name: 'npub',
+            required: true,
+            errors: verification.getErrors('npub'),
+        }) }}
+
+        {{ forms.submitButton({
+            label: 'Add verification'
+        }) }}
+    </form>
+{% endblock %}
