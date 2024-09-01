@@ -3,7 +3,7 @@
     "description": "NIP 05 Verification",
     "type": "craft-plugin",
     "license": "mit",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "require": {
         "php": ">=8.2",
         "craftcms/cms": "^5.0.0",
