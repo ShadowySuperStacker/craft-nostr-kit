@@ -38,15 +38,15 @@ class VerificationController extends Controller
             } else {
                 $names = NostrKit::getInstance()->getVerifications()->getAllVerifications();
             }
+
+            $mappedNames = [];
             
-            $names = array_map(function ($name) {
-                return [
-                    $name->name => $name->npub_hex
-                ];
-            }, $names);
+            foreach ($names as $name) {
+                $mappedNames[$name->name] = $name->npub_hex;
+            }
             
             return [
-                'names' => $names
+                'names' => $mappedNames
             ];
         }, 3600 * 24 * 365);
     }
